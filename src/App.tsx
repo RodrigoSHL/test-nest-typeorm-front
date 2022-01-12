@@ -10,8 +10,13 @@ function App() {
 
   const [tasks, setTasks] = useState<TaskDTO[]>([]);
   const [createDialogOpen, seCreateDialogOpen] = useState(false);
+
   const addTask = (task: TaskDTO) => {
     setTasks([...tasks,task])
+  }
+
+  const removeTask = (taskId: string) => {
+    setTasks(tasks.filter((x)=> x.id !== taskId))
   }
 
   useEffect(()=> {
@@ -43,7 +48,7 @@ function App() {
       {tasks.map(task => {
           return (
             <Grid item xs={3}>
-              <Task data={task}/>
+              <Task data={task} onTaskDelete={removeTask}/>
             </Grid>
           );
         })

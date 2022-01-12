@@ -23,4 +23,10 @@ export class TaskAPI {
         const data = await resp.json();
         return data;
     }
+
+    public static async deleteOne(taskId: string){
+        await fetch(`http://localhost:4500/api/tasks/${taskId}`, {
+            method: "DELETE",
+        });
+    }
 }

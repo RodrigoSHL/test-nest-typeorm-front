@@ -6,12 +6,20 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Container } from '@material-ui/core';
+import { TaskAPI } from '../api/task.api';
 
 interface Props {
   data : TaskDTO;
+  onTaskDelete: (taskId: string) => void;
 }
 
-const Task = ({data}: Props) => {
+const Task = ({data, onTaskDelete}: Props) => {
+
+    const deleteTask = async () => {
+        await TaskAPI.deleteOne(data.id);
+        onTaskDelete(data.id);
+    };
+
     return (
         <Card variant="outlined">
             <CardContent>
@@ -30,7 +38,9 @@ const Task = ({data}: Props) => {
             <CardActions>
                 <Container>
                     <Button style={{marginRight:10}} size="small" variant="contained" color="primary">Edit</Button>
-                    <Button size="small" variant="contained" color="secondary">Delete</Button>
+                    <Button size="small" variant="contained" color="secondary"
+                        onClick={deleteTask}
+                    >Delete</Button>
                 </Container>
                </CardActions>
         </Card>
