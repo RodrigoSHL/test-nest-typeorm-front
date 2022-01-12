@@ -2,10 +2,12 @@ import Button from '@material-ui/core/Button';
 import {  Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core';
 import { useState } from 'react';
 import { TaskAPI } from '../api/task.api';
+import { TaskDTO } from '../api/dto/task.dto';
 
 interface Props {
   open : boolean;
   handleClose: () => void;
+  onTaskCreated: (task: TaskDTO) => void;
 }
 
 
@@ -17,6 +19,7 @@ const createTask = async () => {
     const resp = await TaskAPI.createOne({
         name, completed
     });
+    props.onTaskCreated(resp);
     console.log(resp);
 }
 

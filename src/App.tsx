@@ -10,13 +10,15 @@ function App() {
 
   const [tasks, setTasks] = useState<TaskDTO[]>([]);
   const [createDialogOpen, seCreateDialogOpen] = useState(false);
+  const addTask = (task: TaskDTO) => {
+    setTasks([...tasks,task])
+  }
 
   useEffect(()=> {
     async function fetchAll() {
       const resp = await TaskAPI.getAll();
       setTasks(resp);
           console.log(resp);
-
     }
     fetchAll();
   }, [])
@@ -26,6 +28,7 @@ function App() {
       <CreateTaskDialog
         open={createDialogOpen}
         handleClose={() => seCreateDialogOpen(false)}
+        onTaskCreated={addTask}
       />
       <AppBar position="static">
         <Toolbar>
