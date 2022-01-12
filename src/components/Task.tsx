@@ -1,6 +1,5 @@
 import { TaskDTO } from '../api/dto/task.dto'
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -20,11 +19,12 @@ const Task = ({data}: Props) => {
                     color="textSecondary" 
                     gutterBottom
                 >
-                Id: {data.id} - Name:{data.name}
+                Id: {data.id} <br />
+                Name: {data.name}
                 </Typography>
                 
                 <Typography variant="body2">
-                    {(data.completed) ? "Completada" : "No completada"}
+                    State: {(data.completed) ? "Completed" : "Not completed"}
                 </Typography>
             </CardContent>
             <CardActions>

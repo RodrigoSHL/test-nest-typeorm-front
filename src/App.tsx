@@ -21,8 +21,6 @@ function App() {
     fetchAll();
   }, [])
 
-
-
   return (
     <div className="App">
       <CreateTaskDialog
